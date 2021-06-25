@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function RightNestedListComponents() {
+export default function RightSideBarDrawer() {
 
     const classes = useStyles();
 

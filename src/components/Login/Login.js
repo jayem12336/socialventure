@@ -19,7 +19,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { Alert } from "@material-ui/lab";
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import bgImage from '../../assets/bgImage.png'
+import bgImage from '../../assets/bgImage_1.png'
 
 const useStyles = makeStyles((theme) => ({
     root: {

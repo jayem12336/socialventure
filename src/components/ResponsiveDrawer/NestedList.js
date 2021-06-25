@@ -28,10 +28,40 @@ const useStyles = makeStyles((theme) => ({
   },
   gridContainer: {
     border: 50
+  },
+  userDetailsContainer: {
+    border: '1px solid black',
+    width: 300,
+    paddingBottom: 10,
+    borderRadius: 10
+  },
+  listStyle: {
+    border: '1px solid black',
+    width: 300,
+    marginLeft: 10,
+    borderBottom: 'none',
+    borderRadius: 5
+  },
+  lastListStyle: {
+    border: '1px solid black',
+    width: 300,
+    marginLeft: 10,
+    borderRadius: 5
+  },
+  listtextStyle: {
+    fontSize: '1rem'
+  },
+  iconStyle: {
+    fontSize: 40,
+    marginLeft: 10
+  },
+  textStyle: {
+    fontSize: 20,
+    marginLeft: 40
   }
 }));
 
-export default function NestedList() {
+export default function NestedList( {userProfile} ) {
 
   const classes = useStyles();
 
@@ -42,61 +72,58 @@ export default function NestedList() {
       aria-labelledby="nested-list-subheader"
       className={classes.root}
     >
-      <ListItem button>
-        <Grid container>
+      <ListItem style={{marginBottom: 30, marginTop: 20}}>
+        <Grid container spacing={2} className={classes.userDetailsContainer}>
           <Grid item>
-            <Grid container>
-              <Avatar />
-              <Typography style={{ paddingLeft: 10 }}>Nico C Bronoso</Typography>
-            </Grid>
+            <Avatar style={{width: 50 , height: 50, marginTop: 10}}/>
           </Grid>
-          <Grid container justify="center">
-            <Typography>Nicobronoso@yopmail.com</Typography>
+          <Grid item>
+            <Typography variant="h6" style={{textAlign: 'center', marginTop: 10}}>{userProfile && userProfile.firstname} {userProfile && userProfile.lastname}</Typography>
+            <Typography>{userProfile && userProfile.email}</Typography>
           </Grid>
         </Grid>
       </ListItem>
-
-      <ListItem button>
+      <ListItem button className={classes.listStyle}>
         <ListItemIcon>
-          <HomeIcon />
+          <HomeIcon className={classes.iconStyle}/>
         </ListItemIcon>
-        <ListItemText primary="Home" />
+        <ListItemText primary="Home" classes={{ primary: classes.textStyle }}/>
       </ListItem>
-      <ListItem button>
+      <ListItem button className={classes.listStyle}>
         <ListItemIcon>
-          <PersonAddIcon />
+          <PersonAddIcon className={classes.iconStyle}/>
         </ListItemIcon>
-        <ListItemText primary="Friend Request" />
+        <ListItemText primary="Friend Request" classes={{ primary: classes.textStyle }}/>
       </ListItem>
-      <ListItem button>
+      <ListItem button className={classes.listStyle}>
         <ListItemIcon>
-          <PhotoSizeSelectActualIcon />
+          <PhotoSizeSelectActualIcon className={classes.iconStyle}/>
         </ListItemIcon>
-        <ListItemText primary="Photos" />
+        <ListItemText primary="Photos" classes={{ primary: classes.textStyle }}/>
       </ListItem>
-      <ListItem button>
+      <ListItem button className={classes.listStyle}>
         <ListItemIcon>
-          <LibraryBooksIcon />
+          <LibraryBooksIcon className={classes.iconStyle}/>
         </ListItemIcon>
-        <ListItemText primary="News Feed" />
+        <ListItemText primary="News Feed" classes={{ primary: classes.textStyle }}/>
       </ListItem>
-      <ListItem button>
+      <ListItem button className={classes.listStyle}>
         <ListItemIcon>
-          <PersonIcon />
+          <PersonIcon className={classes.iconStyle}/>
         </ListItemIcon>
-        <ListItemText primary="Profile" />
+        <ListItemText primary="Profile" classes={{ primary: classes.textStyle }}/>
       </ListItem>
-      <ListItem button>
+      <ListItem button className={classes.listStyle}>
         <ListItemIcon>
-          <ChromeReaderModeIcon />
+          <ChromeReaderModeIcon className={classes.iconStyle}/>
         </ListItemIcon>
-        <ListItemText primary="Pages" />
+        <ListItemText primary="Pages" classes={{ primary: classes.textStyle }}/>
       </ListItem>
-      <ListItem button>
+      <ListItem button className={classes.lastListStyle}>
         <ListItemIcon>
-          <SettingsIcon />
+          <SettingsIcon className={classes.iconStyle}/>
         </ListItemIcon>
-        <ListItemText primary="Settings" />
+        <ListItemText primary="Settings" classes={{ primary: classes.textStyle }}/>
       </ListItem>
     </List>
 

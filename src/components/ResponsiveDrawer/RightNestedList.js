@@ -3,16 +3,15 @@ import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
+
 
 //icon
-import HomeIcon from '@material-ui/icons/Home';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import PhotoSizeSelectActualIcon from '@material-ui/icons/PhotoSizeSelectActual';
-import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
-import PersonIcon from '@material-ui/icons/Person';
-import ChromeReaderModeIcon from '@material-ui/icons/ChromeReaderMode';
-import SettingsIcon from '@material-ui/icons/Settings';
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
+import Avatar from '@material-ui/core/Avatar'
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { IconButton } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,6 +24,33 @@ const useStyles = makeStyles((theme) => ({
   },
   gridContainer: {
     border: 50
+  },
+  userDetailsContainer: {
+    border: '1px solid black',
+    width: 350,
+    paddingBottom: 10,
+    borderRadius: 10
+  },
+  listStyle: {
+    border: '1px solid black',
+    width: 340,
+    marginLeft: 10,
+    borderRadius: 5,
+    marginBottom: 5
+  },
+  iconStyle: {
+    fontSize: 40,
+    marginLeft: 10
+  },
+  textStyle: {
+    fontSize: 20,
+    marginLeft: 40
+  },
+  btnStyle: {
+    '&:hover': {
+      background: '#4877c2',
+    },
+    width: 100,
   }
 }));
 
@@ -39,48 +65,117 @@ export default function RightNestedList() {
       aria-labelledby="nested-list-subheader"
       className={classes.root}
     >
-      <ListItem button>
-        <ListItemIcon>
-          <HomeIcon />
-        </ListItemIcon>
-        <ListItemText primary="Home" />
+      <ListItem style={{ marginBottom: 30, marginTop: 20 }}>
+        <Grid container spacing={2} className={classes.userDetailsContainer}>
+          <Grid item>
+            <Avatar style={{ width: 50, height: 50, marginTop: 10 }} />
+          </Grid>
+          <Grid item>
+            <Typography variant="h6" style={{ marginTop: 10, fontWeight:"bold" }}>Jomari Aquino</Typography>
+            <Typography variant="subtitle1">Wants to add you to friends</Typography>
+          </Grid>
+          <Grid container justify="center" spacing={3}>
+            <Grid item>
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.btnStyle}
+              >
+                Accept
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                variant="contained"
+                color="inherit"
+                className={classes.btnStyle}
+              >
+                Decline
+              </Button>
+            </Grid>
+          </Grid>
+        </Grid>
       </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <PersonAddIcon />
-        </ListItemIcon>
-        <ListItemText primary="Friend Request" />
+      <ListItem style={{ marginBottom: 30, marginTop: 20 }}>
+        <Grid container spacing={2} className={classes.userDetailsContainer}>
+          <Grid item>
+            <Avatar style={{ width: 50, height: 50, marginTop: 10 }} />
+          </Grid>
+          <Grid item>
+            <Typography variant="h6" style={{ marginTop: 10, fontWeight:"bold" }}>Jarvis Mariano</Typography>
+            <Typography variant="subtitle1">Wants to add you to friends</Typography>
+          </Grid>
+          <Grid container justify="center" spacing={3}>
+            <Grid item>
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.btnStyle}
+              >
+                Accept
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                variant="contained"
+                color="inherit"
+                className={classes.btnStyle}
+              >
+                Decline
+              </Button>
+            </Grid>
+          </Grid>
+        </Grid>
       </ListItem>
-      <ListItem button>
+      <Grid container justify="center">
+        <Button>
+          See All
+        </Button>
+      </Grid>
+      <hr></hr>
+      <Grid container style={{ marginBottom: 20, padding: 10 }}>
+        <Grid item sm={11}>
+          <Grid container>
+            <Typography variant="subtitle1">
+              Friends
+            </Typography>
+          </Grid>
+        </Grid>
+        <Grid item sm={1}>
+          <Grid container>
+            <Typography variant="subtitle1">
+              2
+            </Typography>
+          </Grid>
+        </Grid>
+      </Grid>
+      <ListItem button className={classes.listStyle}>
         <ListItemIcon>
-          <PhotoSizeSelectActualIcon />
-        </ListItemIcon>
-        <ListItemText primary="Photos" />
+          <Avatar className={classes.iconStyle} />
+        </ListItemIcon >
+        <Typography variant="subtitle1" className={classes.textStyle}>
+          JM
+        </Typography>
+        <Grid container justify="flex-end">
+          <IconButton>
+            <MoreVertIcon />
+          </IconButton>
+        </Grid>
       </ListItem>
-      <ListItem button>
+      <ListItem button className={classes.listStyle}>
         <ListItemIcon>
-          <LibraryBooksIcon />
-        </ListItemIcon>
-        <ListItemText primary="News Feed" />
+          <Avatar className={classes.iconStyle} />
+        </ListItemIcon >
+        <Typography variant="subtitle1" className={classes.textStyle}>
+          Jarvis
+        </Typography>
+        <Grid container justify="flex-end">
+          <IconButton>
+            <MoreVertIcon />
+          </IconButton>
+        </Grid>
       </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <PersonIcon />
-        </ListItemIcon>
-        <ListItemText primary="Profile" />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <ChromeReaderModeIcon />
-        </ListItemIcon>
-        <ListItemText primary="Pages" />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <SettingsIcon />
-        </ListItemIcon>
-        <ListItemText primary="Settings" />
-      </ListItem>
+
     </List>
 
   );

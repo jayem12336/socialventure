@@ -14,14 +14,20 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Grid from '@material-ui/core/Grid';
-import Logo from '../../assets/socialventureLogo.png'
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import Logo from '../../assets/socialventureLogo_1.png';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles'
+import NestedListComponents from '../ResponsiveDrawer/NestedListComponents';
 
 const useStyles = makeStyles((theme) => ({
     grow: {
         flexGrow: 1,
     },
     menuButton: {
-        marginRight: theme.spacing(2),
+        [theme.breakpoints.up('sm')]: {
+            marginRight: theme.spacing(2),
+        },
     },
     title: {
         display: 'none',
@@ -42,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up('sm')]: {
             marginLeft: theme.spacing(3),
             width: '50%',
-            height:45
+            height: 45
         },
     },
     searchIcon: {
@@ -56,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
     },
     inputRoot: {
         color: 'inherit',
-        paddingTop:5
+        paddingTop: 5
     },
     inputInput: {
         padding: theme.spacing(1, 1, 1, 0),
@@ -80,12 +86,20 @@ const useStyles = makeStyles((theme) => ({
             display: 'none',
         },
     },
-    iconStyle:{
-        fontSize:35
+    iconStyle: {
+        fontSize: 35,
+    },
+    iconBtn: {
+        marginLeft: 10
     }
 }));
 
-export default function Header() {
+export default function Header( {userProfile} ) {
+
+    const theme = useTheme();
+
+    const isMatch = useMediaQuery(theme.breakpoints.down('md'));
+
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -167,22 +181,26 @@ export default function Header() {
         </Menu>
     );
 
+    console.log(userProfile)
+
     return (
         <div className={classes.grow}>
             <AppBar position="static">
                 <Toolbar>
+                    {isMatch ? <NestedListComponents /> : ""}
                     <IconButton
                         edge="start"
                         className={classes.menuButton}
                         color="inherit"
                         aria-label="open drawer"
+                        style={{marginLeft: isMatch ? 20 : 0}}
                     >
-                        <img style={{width:50, height:50}} src={Logo} alt="Logo" />
+                        <img style={{ width: 50, height: 50 }} src={Logo} alt="Logo" />
                     </IconButton>
                     <Typography className={classes.title} variant="h6" noWrap>
                         Social Venture
                     </Typography>
-                    <Grid container justify="center" style={{width: '70%'}}>
+                    <Grid container justify="center" style={{ width: '60%' }}>
                         <div className={classes.search}>
                             <div className={classes.searchIcon}>
                                 <SearchIcon />
@@ -199,25 +217,42 @@ export default function Header() {
                     </Grid>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
-                        <IconButton aria-label="show 4 new mails" color="inherit">
-                            <Badge badgeContent={4} color="secondary">
-                                <MailIcon className={classes.iconStyle} />
-                            </Badge>
-                        </IconButton>
-                        <IconButton aria-label="show 17 new notifications" color="inherit">
-                            <Badge badgeContent={17} color="secondary">
-                                <NotificationsIcon className={classes.iconStyle}/>
-                            </Badge>
-                        </IconButton>
                         <IconButton
-                            edge="end"
+                            edge="start"
                             aria-label="account of current user"
                             aria-controls={menuId}
                             aria-haspopup="true"
                             onClick={handleProfileMenuOpen}
                             color="inherit"
+                            className={classes.iconBtn}
                         >
                             <AccountCircle className={classes.iconStyle} />
+                            {userProfile && userProfile.firstname}
+                        </IconButton>
+                        <IconButton
+                            aria-label="show 4 new mails"
+                            color="inherit"
+                            className={classes.iconBtn}
+                        >
+                            <Badge badgeContent={4} color="secondary">
+                                <MailIcon className={classes.iconStyle} />
+                            </Badge>
+                        </IconButton>
+                        <IconButton
+                            aria-label="show 17 new notifications"
+                            color="inherit"
+                            className={classes.iconBtn}
+                        >
+                            <Badge badgeContent={17} color="secondary">
+                                <NotificationsIcon className={classes.iconStyle} />
+                            </Badge>
+                        </IconButton>
+                        <IconButton
+                            aria-label="show 17 new notifications"
+                            color="inherit"
+                            className={classes.iconBtn}
+                        >
+                            <ArrowDropDownIcon className={classes.iconStyle} />
                         </IconButton>
                     </div>
                     <div className={classes.sectionMobile}>

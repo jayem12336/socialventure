@@ -4,10 +4,9 @@ import NestedList from './NestedList';
 import RightNestedList from './RightNestedList';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles'
-import NestedListComponents from './NestedListComponents';
-import RightNestedListComponents from './RightNestedListComponents';
 
-const drawerWidth = 240;
+
+const drawerWidth = 250;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,25 +21,25 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+    marginTop: -50
   },
-
 }));
 
-function ResponsiveDrawer({ children }) {
+function SideBarDrawer({ children, userProfile }) {
 
   const classes = useStyles();
 
   const theme = useTheme();
 
-  const isMatch = useMediaQuery(theme.breakpoints.down('md'));
+  const isMatch = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <div className={classes.root}>
 
-      {isMatch ? <NestedListComponents /> : (
+      {isMatch ? "" : (
         <>
           <nav className={classes.drawer} aria-label="Button folders">
-            <NestedList />
+            <NestedList userProfile={userProfile}/>
           </nav>
         </>
       )}
@@ -48,14 +47,14 @@ function ResponsiveDrawer({ children }) {
         <div className={classes.toolbar} />
         {children}
       </main>
-      {isMatch ? <RightNestedListComponents /> : (
+      {isMatch ? "" : (
         <>
           <nav className={classes.drawer} aria-label="Button folders">
-            <RightNestedList />
+            <RightNestedList userProfile={userProfile}/>
           </nav>
         </>
       )}
     </div>
   );
 }
-export default ResponsiveDrawer;
+export default SideBarDrawer;

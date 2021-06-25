@@ -69,11 +69,6 @@ export default function NestedListComponents() {
                                     <ListItemText primary="Nico C Bronoso" />
                                 </Grid>
                             </Grid>
-                            <Grid item>
-                                <Grid container>
-                                    <ListItemText primary="Nico C Bronoso" />
-                                </Grid>
-                            </Grid>
                         </Grid>
                     </ListItem>
 

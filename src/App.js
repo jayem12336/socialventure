@@ -16,20 +16,26 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import PrivateRoute from './routers/PrivateRoute'
 import PublicRoute from './routers/PublicRoute'
 
-import Home from './components/Pages/Home';
+import Home from './components/Pages/Home/Home';
 
 function App() {
 
-
   const [values, setValues] = useState({
     isAuthenticated: false,
-    isLoading: true
+    isLoading: true,
+    user: {}
   })
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         // User is signed in.
+        const db = firebase.firestore();
+        db.collection("users")
+          .doc(user.uid)
+          .onSnapshot((doc) => {
+            setValues({ user: doc.data()})
+          });
         setValues({ isAuthenticated: true, isLoading: false });
       } else {
         // No user is signed in.
@@ -82,7 +88,9 @@ function App() {
             component={Home}
             path="/home"
             isAuthenticated={values.isAuthenticated}
-          />
+          >
+            <Home userProfile={values.user}/>
+          </PrivateRoute>
         </Switch>
       </Router>
     </ThemeProvider>

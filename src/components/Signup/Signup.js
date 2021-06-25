@@ -30,7 +30,8 @@ import {
     KeyboardDatePicker,
 } from '@material-ui/pickers';
 
-import bgImage from '../../assets/bgImage.png'
+import bgImage from '../../assets/bgImage_2.png'
+import Logo from '../../assets/socialventureLogo_1.png'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -181,6 +182,7 @@ export default function Login() {
                     <Grid container justify="flex-start">
                         <Grid className={classes.formContainer}>
                             <Grid align='center' style={{ marginBottom: 10, marginTop: -10 }}>
+                                <img src={Logo} alt="Logo" style={{width:70,height:60}} />
                                 <Typography variant="h5">Sign Up</Typography>
                                 <Typography variant="subtitle1">It's quick and easy.</Typography>
                             </Grid>
