@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'none',
         [theme.breakpoints.up('sm')]: {
             display: 'block',
+            width:"15%"
         },
     },
     search: {
@@ -180,8 +181,6 @@ export default function Header( {userProfile} ) {
             </MenuItem>
         </Menu>
     );
-
-    console.log(userProfile)
 
     return (
         <div className={classes.grow}>

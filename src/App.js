@@ -60,7 +60,7 @@ function App() {
         height: '100vh',
         width: '100vw'
       }}>
-        <CircularProgress color="primary" size={200} />
+        <CircularProgress color="secondary" size={200} />
       </div>
     );
   }
